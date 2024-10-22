@@ -57,7 +57,7 @@ name.BackgroundTransparency = 1.000
 name.Position = UDim2.new(0.0398406386, 0, -0.199999794, 0)
 name.Size = UDim2.new(0, 71, 0, 35)
 name.Font = Enum.Font.Code
-name.Text = "    User : Retract "
+name.Text = "    ID : 15549 "
 name.TextColor3 = Color3.fromRGB(255, 255, 255)
 name.TextSize = 14.000
 
@@ -342,24 +342,21 @@ end)
 local btns2 = serv:Channel("Misc")
 
 btns2:Button("Inf Oxygen", function()
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Workspace = game:GetService("Workspace")
+    local Players = game:GetService("Players")
 
--- Function to disable the LoadScript for the LocalPlayer
-local function disableLoadScript()
-    local oxygenScript = Workspace.LocalPlayer.client:FindFirstChild("oxygen")
+    -- Get the LocalPlayer
+    local LocalPlayer = Players.LocalPlayer
     
-    if oxygenScript and oxygenScript:IsA("Script") then
-        oxygenScript.Enabled = false -- Disable the script
-        print("Oxygen script disabled.")
-    else
-        print("Oxygen script not found or is not a script.")
-    end
-end
-
--- Call the function to disable the LoadScript
-disableLoadScript()
+    -- Path to the LocalScript you want to disable
+    local oxygenScript = workspace:FindFirstChild("kuyraiakup")
+        and workspace.kuyraiakup:FindFirstChild("client")
+        and workspace.kuyraiakup.client:FindFirstChild("oxygen")
+    
+    -- Check if the script exists and belongs to the LocalPlayer
+    if oxygenScript and oxygenScript:IsA("LocalScript") and LocalPlayer.Name == "kuyraiakup" then
+        -- Disable the script
+        oxygenScript.Disabled = true
+    end    
 end)
 
 btns2:Seperator()
